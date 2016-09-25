@@ -20,3 +20,28 @@
 .repeat-animate.ng-leave {
     opacity: 1;
 }
+
+.slide-in-from-left {
+    transform: translateX(-100%) !important;
+    animation: slideLeft 0.5s forwards;
+    animation-delay: 0.3s
+}
+
+.slide-in-from-bottom {
+    transform: translateY(100%) !important;
+    animation: slideBottom 0.5s forwards;
+    animation-delay: 0.5s
+}
+
+
+@keyframes slideLeft {
+    100% {
+      transform: translateX(0);
+    }
+}
+
+@keyframes slideBottom {
+    100% {
+      transform: translateY(0);
+    }
+}

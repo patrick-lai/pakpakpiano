@@ -1,9 +1,9 @@
 <div  layout="column">
 
-  <section layout="row" flex>
+  <section layout="row" flex style="overflow:hidden;">
 
       <md-sidenav
-          class="md-sidenav-left animate-slideRight full-height"
+          class="md-sidenav-left full-height slide-in-from-left"
           md-component-id="left"
           md-is-locked-open="true"
           md-whiteframe="4">
@@ -28,7 +28,7 @@
         </ul>
       </md-sidenav>
 
-      <md-content flex style="overflow: hidden;">
+      <md-content flex style="overflow: hidden;" class="slide-in-from-bottom">
         <div layout="row" class="animate" ng-class="{'showSheet': showSheet}"  style="width: 200%;">
           <div layout="column" style="width: 50%;">
             <div ng-show="!item" style="align-items: center; display: flex; height: 100vh;">
