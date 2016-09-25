@@ -46,7 +46,6 @@
       'ui.router',
       'backand',
       'home',
-      'getting-started',
       'common.header',
       'common.footer',
       'common.services.backand',

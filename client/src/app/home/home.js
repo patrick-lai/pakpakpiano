@@ -28,26 +28,25 @@
    * @description Controller
    */
   function HomeCtrl(data, $scope, $rootScope) {
-    var home = this;
     $scope.projects = data.data;
     $scope.setItem = function(item){
       $rootScope.item = item;
-    }
+    };
 
     $scope.openYoutube = function(item){
       window.open(item.youtubeUrl);
-    }
+    };
 
     $scope.toggleSheet = function(){
       $rootScope.showSheet = !$rootScope.showSheet;
-    }
+    };
 
     $scope.openSheet = function(item){
       window.open(item.sheetMusicUrl);
-    }
+    };
   }
 
-  function MenuCtrl($scope) {
+  function MenuCtrl() {
 
   }
 

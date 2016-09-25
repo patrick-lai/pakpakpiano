@@ -1,7 +1,3 @@
-
-@import "icomoon";
-@import "animations";
-
 // Height of the bottom bar under video
 $tabBarHeight: 3em;
 
@@ -12,12 +8,6 @@ $tabBarHeight: 3em;
 
 .font-garden{
   font-family: "garden";
-}
-
-.l-page {
-  .pure-g > div {
-    @include box-sizing();
-  }
 }
 
 .full-height{

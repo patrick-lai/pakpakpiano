@@ -86,7 +86,7 @@ gulp.task('build:dist', ['clean'], function(cb) {
 
 //build files for development
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['sass','inject-vendor', 'templates'], cb);
+  runSequence(['jshint','sass','inject-vendor', 'templates'], cb);
 });
 
 //generate a minified css files, 2 js file, change theirs name to be unique, and generate sourcemaps
