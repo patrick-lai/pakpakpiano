@@ -81,12 +81,12 @@ gulp.task('sass', function() {
 
 //build files for creating a dist release
 gulp.task('build:dist', ['clean'], function(cb) {
-  runSequence(['inject-vendor', 'build', 'copy', 'copy:assets', 'images'], 'html', cb);
+  runSequence(['build', 'copy', 'copy:assets', 'copy:src', 'images'], 'html', 'copy:tmp', cb);
 });
 
 //build files for development
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['jshint','sass','inject-vendor', 'templates'], cb);
+  runSequence(['jshint','sass', 'inject-vendor', 'templates'], cb);
 });
 
 //generate a minified css files, 2 js file, change theirs name to be unique, and generate sourcemaps
@@ -98,17 +98,8 @@ gulp.task('html', function() {
   return gulp.src(config.index)
     .pipe(assets)
     .pipe($.sourcemaps.init())
-    .pipe($.if('**/*main.js', $.ngAnnotate()))
-    .pipe($.if('*.js', $.uglify({
-      mangle: false,
-    })))
-    .pipe($.if('*.css', $.csso()))
-    .pipe($.if(['**/*main.js', '**/*main.css'], $.header(config.banner, {
-      pkg: pkg
-    })))
     .pipe($.rev())
     .pipe(assets.restore())
-    .pipe($.useref())
     .pipe($.revReplace())
     .pipe($.if('*.html', $.minifyHtml({
       empty: true
@@ -133,7 +124,7 @@ gulp.task('copy:assets', function() {
 gulp.task('inject-vendor', function() {
     gulp.src('./client/index.html')
         .pipe(wiredep({}))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest('./client'));
 });
 
 //copy assets in dist folder
@@ -148,6 +139,28 @@ gulp.task('copy', function() {
       title: 'copy'
     }));
 });
+
+gulp.task('copy:src',function(){
+  return gulp.src([
+      config.base + '/src/**/*.js',
+      config.base + '/src/**/*.css',
+    ])
+    .pipe(gulp.dest(config.dist+"/src"))
+    .pipe($.size({
+      title: 'copy:src'
+    }));
+})
+
+gulp.task('copy:tmp',function(){
+  return gulp.src([
+    config.tmp + '**/*.js',
+    config.tmp + '**/*.css',
+    ])
+    .pipe(gulp.dest(config.dist))
+    .pipe($.size({
+      title: 'copy:tmp'
+    }));
+})
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.dist, config.tmp]));
