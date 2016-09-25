@@ -1,0 +1,22 @@
+.repeat-animate.ng-enter,
+.repeat-animate.ng-leave
+{
+    -webkit-transition: .4s easeInOut all;
+    transition: .4s easeInOut all;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space:nowrap;
+}
+
+.repeat-animate.ng-leave.repeat-animate.ng-leave-active,
+.repeat-animate.ng-enter {
+    opacity: 0;
+    height: 0px;
+}
+
+.repeat-animate.ng-enter.repeat-animate.ng-enter-active,
+.repeat-animate.ng-leave {
+    opacity: 1;
+}

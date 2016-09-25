@@ -5,12 +5,16 @@
     angular.bootstrap(document, ['app']);
   });
 
-  function config(BackandProvider, $stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
+  function config(BackandProvider, $stateProvider, $urlRouterProvider, $logProvider, $httpProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/');
     $logProvider.debugEnabled(true);
 
-    //BackandProvider.setAnonymousToken('Your Anonymous Token');
-    //BackandProvider.setSignUpToken('Your SignUp Token');
+    BackandProvider.setAppName('pakpakpiano');
+    BackandProvider.setSignUpToken('4b5612b4-1817-46fe-90dd-8d6961767c06');
+    BackandProvider.setAnonymousToken('add432aa-5f8e-43db-a8aa-64c051fcb4e0');
+
+    $mdThemingProvider.theme('default')
+      .dark();
 
     $httpProvider.interceptors.push('httpInterceptor');
     $stateProvider
@@ -32,8 +36,10 @@
     $log.debug('MainCtrl loaded!');
   }
 
-  function run($log) {
+  function run($log, $rootScope) {
     $log.debug('App is running!');
+    $rootScope.item = null;
+    $rootScope.showSheet = false;
   }
 
   angular.module('app', [
@@ -48,7 +54,11 @@
       'common.directives.version',
       'common.filters.uppercase',
       'common.interceptors.http',
-      'templates'
+      'templates',
+      'ngLodash',
+      'ngMaterial',
+      'youtube-embed',
+      'ngAnimate'
     ])
     .config(config)
     .run(run)

@@ -1,5 +1,98 @@
+
+@import "icomoon";
+@import "animations";
+
+// Height of the bottom bar under video
+$tabBarHeight: 3em;
+
+@font-face {
+    font-family: garden;
+    src: url(/assets/fonts/garden.otf);
+}
+
+.font-garden{
+  font-family: "garden";
+}
+
 .l-page {
   .pure-g > div {
     @include box-sizing();
+  }
+}
+
+.full-height{
+  height: 100vh;
+}
+
+.cover{
+  object-fit: cover;
+  height: 100px;
+  width: 100%;
+}
+
+.relative{
+  position: relative;
+}
+
+.cover-list{
+
+}
+
+.cover-label{
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.hover-pop{
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  &:hover {
+      -webkit-transform: scale(1.2,1.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+// Overrides
+md-sidenav{
+  width: 400px;
+}
+
+// Youtube player
+.embed-responsive {
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.embed-responsive-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - #{$tabBarHeight});
+  border: 0;
+}
+
+tab-bar{
+  height: $tabBarHeight;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center; /* align vertical */
+  >div{
+    padding: .5em;
+  }
+  >.icons{
+    margin-left: auto;
   }
 }

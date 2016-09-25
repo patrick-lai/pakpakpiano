@@ -12,6 +12,9 @@ var pkg = require('./package');
 var karma = require('karma').server;
 var del = require('del');
 var _ = require('lodash');
+var wiredep = require('wiredep').stream;
+var livereload = require('gulp-livereload');
+
 /* jshint camelcase:false*/
 var webdriverStandalone = require('gulp-protractor').webdriver_standalone;
 var webdriverUpdate = require('gulp-protractor').webdriver_update;
@@ -78,12 +81,12 @@ gulp.task('sass', function() {
 
 //build files for creating a dist release
 gulp.task('build:dist', ['clean'], function(cb) {
-  runSequence(['jshint', 'build', 'copy', 'copy:assets', 'images'], 'html', cb);
+  runSequence(['inject-vendor', 'build', 'copy', 'copy:assets', 'images'], 'html', cb);
 });
 
 //build files for development
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['sass', 'templates'], cb);
+  runSequence(['sass','inject-vendor', 'templates'], cb);
 });
 
 //generate a minified css files, 2 js file, change theirs name to be unique, and generate sourcemaps
@@ -125,6 +128,12 @@ gulp.task('copy:assets', function() {
     .pipe($.size({
       title: 'copy:assets'
     }));
+});
+
+gulp.task('inject-vendor', function() {
+    gulp.src('./client/index.html')
+        .pipe(wiredep({}))
+        .pipe(gulp.dest('./build'));
 });
 
 //copy assets in dist folder
@@ -194,7 +203,6 @@ gulp.task('serve', ['build'], function() {
 
   gulp.watch(config.html, reload);
   gulp.watch(config.scss, ['sass', reload]);
-  gulp.watch(config.js, ['jshint']);
   gulp.watch(config.tpl, ['templates', reload]);
   gulp.watch(config.assets, reload);
 });

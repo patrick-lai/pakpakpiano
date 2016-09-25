@@ -27,12 +27,32 @@
    * @name  HomeCtrl
    * @description Controller
    */
-  function HomeCtrl(data) {
+  function HomeCtrl(data, $scope, $rootScope) {
     var home = this;
-    home.data = data.data;
+    $scope.projects = data.data;
+    $scope.setItem = function(item){
+      $rootScope.item = item;
+    }
+
+    $scope.openYoutube = function(item){
+      window.open(item.youtubeUrl);
+    }
+
+    $scope.toggleSheet = function(){
+      $rootScope.showSheet = !$rootScope.showSheet;
+    }
+
+    $scope.openSheet = function(item){
+      window.open(item.sheetMusicUrl);
+    }
+  }
+
+  function MenuCtrl($scope) {
+
   }
 
   angular.module('home', [])
     .config(config)
-    .controller('HomeCtrl',HomeCtrl);
+    .controller('HomeCtrl',HomeCtrl)
+    .controller('MenuCtrl',MenuCtrl);
 })();
