@@ -46,6 +46,11 @@
     };
 
     $scope.getPdfPreview = function(item){
+      // Check for nulls
+      if(!item || !item.sheetMusicUrl) {
+        return;
+      }
+
       var id = item.sheetMusicUrl.split('id=')[1];
       var url = 'https://drive.google.com/file/d/'+id+'/preview';
       return $sce.trustAsResourceUrl(url);
