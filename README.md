@@ -12,4 +12,5 @@
 ### Deploy
 
     $ sudo npm install -g backand  
+    $ gulp build:dist  
     $ backand sync --app pakpakpiano --master *** --user *** --folder /path/to/project/folder
