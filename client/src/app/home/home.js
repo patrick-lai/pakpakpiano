@@ -46,10 +46,10 @@
     };
 
     $scope.getPdfPreview = function(item){
-      var id = item.sheetMusicUrl.split("id=")[1];
-      var url = "https://drive.google.com/file/d/"+id+"/preview";
-      return $sce.trustAsResourceUrl(url)
-    }
+      var id = item.sheetMusicUrl.split('id=')[1];
+      var url = 'https://drive.google.com/file/d/'+id+'/preview';
+      return $sce.trustAsResourceUrl(url);
+    };
   }
 
   function MenuCtrl() {
