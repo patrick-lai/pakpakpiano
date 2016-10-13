@@ -8,3 +8,8 @@
     $ npm install
     $ bower install
     $ gulp serve
+
+### Deploy
+
+    $ sudo npm install -g backand  
+    $ backand sync --app pakpakpiano --master *** --user *** --folder /path/to/project/folder
