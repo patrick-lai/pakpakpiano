@@ -28,39 +28,7 @@
         </ul>
       </md-sidenav>
 
-      <md-content flex style="overflow: hidden;" class="slide-in-from-bottom">
-        <div layout="row" class="animate" ng-class="{'showSheet': showSheet}"  style="width: 200%;">
-          <div layout="column" style="width: 50%;">
-            <div ng-show="!item" style="align-items: center; display: flex; height: 100vh;">
-              <h1 style="width: 100%; text-align: center; opacity: 0.2; font-size: 4em;">
-                Select a recording to view
-              </h1>
-            </div>
-            <div class="embed-responsive">
-              <youtube-video class="embed-responsive-item" video-url="item.youtubeUrl"></youtube-video>
-            </div>
-            <tab-bar>
-              <div>
-                {{item.name}}
-              </div>
-              <span class="icons" ng-show="item">
-                <md-button ng-click="openYoutube(item)">
-                  <span class="icon-youtube"></span> Youtube
-                </md-button>
-                <md-button ng-click="openSheet(item)">
-                  <span class="icon-file-pdf"></span> Sheet
-                </md-button>
-              </span>
-            </tab-bar>
-          </div>
-          <div layout="column" style="width: 50%;">
-            PDF
-          </div>
-        </div>
-
-        <div flex></div>
-
-      </md-content>
+      <div ng-include="'/src/app/home/yt.tpl.html'" style="width: 100%;"/>
 
     </section>
 

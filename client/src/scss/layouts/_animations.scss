@@ -1,8 +1,8 @@
 .repeat-animate.ng-enter,
 .repeat-animate.ng-leave
 {
-    -webkit-transition: .4s easeInOut all;
-    transition: .4s easeInOut all;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
     position: relative;
     display: block;
     overflow: hidden;
@@ -44,4 +44,18 @@
     100% {
       transform: translateY(0);
     }
+}
+
+.animation{
+  iframe{
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+  }
+}
+
+.showSheet{
+  iframe{
+    top: 50vh !important;
+    height: calc(100% - 50vh) !important;
+  }
 }
